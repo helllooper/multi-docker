@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t sainteddy/react-test ./client/Dockerfile.dev ./client 
+
+script:
+  - docker run sainteddy/react-test npm test -- --coverage
+
+after-success:
+  - docker build -t sainteddy/multi-client ./client
+  - docker build -t sainteddy/multi-nginx ./nginx
+  - docker build -t sainteddy/multi-server ./server
+  - docker build -t sainteddy/mulit-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push sainteddy/multi-client
+  - docker push sainteddy/multi-nginx
+  - docker push sainteddy/multi-server
+  - docker push sainteddy/multi-worker
