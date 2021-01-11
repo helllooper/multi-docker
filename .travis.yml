@@ -3,7 +3,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t sainteddy/react-test ./client/Dockerfile.dev ./client 
+  - docker build -t sainteddy/react-test -f ./client/Dockerfile.dev ./client 
 
 script:
   - docker run sainteddy/react-test npm test -- --coverage
