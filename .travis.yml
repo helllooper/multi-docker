@@ -8,7 +8,7 @@ before_install:
   - docker build -t sainteddy/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true saintEddy/react-test npm test
+  - docker run -e CI=true sainteddy/react-test npm test
 
 after_success:
   - docker build -t sainteddy/multi-client ./client
