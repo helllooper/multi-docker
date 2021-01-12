@@ -5,22 +5,26 @@
             "name":"client",
             "image":"sainteddy/multi-client",
             "hostname":"client",
-            "essential":false
+            "essential":false,
+            "memory":128
         },{
             "name":"server",
             "image":"sainteddy/multi-server",
             "hostname":"api",
-            "essential":false
+            "essential":false,
+            "memory":128
         },{
             "name":"worker",
             "image":"sainteddy/multi-worker",
             "hostname":"worker",
-            "essential":false
+            "essential":false,
+            "memory":128
         },{
             "name":"nginx",
             "image":"sainteddy/multi-nginx",
             "hostname":"nginx",
             "essential":true,
+            "memory":128,
             "portMappings":[
                 {
                     "hostPort":80,
