@@ -1,0 +1,33 @@
+{
+    "AWSEBDockerrunVersion":2,
+    "containerDefinitions":[
+        {
+            "name":"client",
+            "image":"sainteddy/multi-client",
+            "hostname":"client",
+            "essential":false
+        },{
+            "name":"server",
+            "image":"sainteddy/multi-server",
+            "hostname":"api",
+            "essential":false
+        },{
+            "name":"worker",
+            "image":"sainteddy/multi-worker",
+            "hostname":"worker",
+            "essential":false
+        },{
+            "name":"nginx",
+            "image":"sainteddy/multi-nginx",
+            "hostname":"nginx",
+            "essential":true,
+            "portMappings":[
+                {
+                    "hostPort":80,
+                    "containerPort":80
+                }
+            ],
+            "links":["client","server"]
+        }
+    ]
+}
